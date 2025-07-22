@@ -20,5 +20,11 @@ set(BENCODING_SOURCES
 )
 
 add_library(bencoding ${BENCODING_SOURCES})
+target_include_directories(bencoding PUBLIC
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../include>
+	$<INSTALL_INTERFACE:${INSTALL_INCLUDE_DIR}>
+)
 
-install(TARGETS bencoding DESTINATION "${INSTALL_LIB_DIR}")
+install(TARGETS bencoding EXPORT bencoding-config DESTINATION "${INSTALL_LIB_DIR}")
+install(EXPORT bencoding-config NAMESPACE bencoding:: DESTINATION "${INSTALL_LIB_DIR}/cmake/bencoding")
+
