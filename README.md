@@ -134,7 +134,10 @@ Usage
 3. Setup the build system of your project to link the
    `install/lib/libbencoding.a` library. For example, with GCC, you can either
    use `-Linstall/lib -lbencoding` or link the `install/lib/libbencoding.a`
-   file directly.
+   file directly. For CMake-based projects you could use `find_package(bencoding)`
+   and the `bencoding::bencoding` imported target. Make sure that the `install`
+   path is inside your `-DCMAKE_PREFIX_PATH` (it is used for adding find paths
+   for `find_package()`).
 
 Sample
 ------
