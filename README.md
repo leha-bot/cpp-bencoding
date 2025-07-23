@@ -64,7 +64,7 @@ Build and Installation
    * `-DWITH_DOC=1` to build API documentation (requires
      [Doxygen](http://www.doxygen.org/), disabled by default).
    * `-DWITH_TESTS=1` to build tests (requires [Google
-     Test](https://code.google.com/p/googletest/), disabled by defauly).
+     Test](https://code.google.com/p/googletest/), disabled by default).
    * `-DCMAKE_BUILD_TYPE=debug` to build the library with debugging
      information, which is useful during the development. By default, the
      library is built in the `release` mode.
@@ -150,7 +150,7 @@ after installation. Sample input files are in the `sample/inputs` directory.
 
 Input file (`sample/inputs/sample1.torrent`):
 ```
-d8:announce18:http://tracker.com10:created by14:KTorrent 2.1.413:creation datei1182163277e4:infod6:lengthi6e4:name8:file.txt12:piece lengthi32768e6:pieces12:binary dataee
+d8:announce18:http://tracker.com10:created by14:KTorrent 2.1.413:creation datei1182163277e4:infod6:lengthi6e4:name8:file.txt12:piece lengthi32768e6:pieces11:binary dataee
 ```
 
 Run:
