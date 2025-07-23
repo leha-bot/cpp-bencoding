@@ -6,7 +6,7 @@
 ## The project's main CMake configuration file.
 ##
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 project(cpp-bencoding CXX)
 
 ##
