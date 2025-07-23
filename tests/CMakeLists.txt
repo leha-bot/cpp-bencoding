@@ -28,4 +28,9 @@ add_executable(tester ${TESTER_SOURCES})
 
 target_link_libraries(tester bencoding gtest gtest_main)
 
+add_test(NAME tester COMMAND tester)
+set_tests_properties(tester
+	PROPERTIES LABELS unit
+)
+
 install(TARGETS tester DESTINATION "${INSTALL_BIN_DIR}")

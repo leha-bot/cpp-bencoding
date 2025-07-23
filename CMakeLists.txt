@@ -21,6 +21,10 @@ if(${WITH_COVERAGE})
 	set(WITH_TESTS ON)
 endif()
 
+if(${WITH_TESTS})
+	enable_testing()
+endif()
+
 ##
 ## Paths.
 ##
