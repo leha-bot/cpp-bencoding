@@ -25,6 +25,9 @@ target_include_directories(bencoding PUBLIC
 	$<INSTALL_INTERFACE:${INSTALL_INCLUDE_DIR}>
 )
 
+# C++11 (or later) is required.
+target_compile_features(bencoding PUBLIC cxx_std_11)
+
 install(TARGETS bencoding EXPORT bencoding-config DESTINATION "${INSTALL_LIB_DIR}")
 install(EXPORT bencoding-config NAMESPACE bencoding:: DESTINATION "${INSTALL_LIB_DIR}/cmake/bencoding")
 
