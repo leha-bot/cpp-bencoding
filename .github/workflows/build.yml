@@ -1,0 +1,77 @@
+name: 'Build project'
+
+on:
+  push:
+    branches:
+      - 'feat/**'
+      - 'fix/**'
+      - 'dev'
+      - 'master'
+    paths: &paths
+      - '.github/workflows/**'
+      - 'doc/**'
+      - 'include/**'
+      - 'sample/**'
+      - 'src/**'
+      - 'tests/**'
+      - 'CMakeLists.txt'
+  pull_request:
+    branches:
+      - 'master'
+    paths: *paths
+  workflow_dispatch:
+
+defaults:
+    run:
+      shell: sh
+
+jobs:
+  build:
+    name: 'Build'
+
+    strategy:
+      matrix:
+        system:
+          - windows-2022
+          - windows-11-arm
+          - macos-13         # Intel
+          - macos-14         # arm64
+          - ubuntu-22.04
+          - ubuntu-latest
+          - ubuntu-24.04-arm
+        config:
+          - Debug
+          - Release
+
+    runs-on: ${{ matrix.system }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      # Convert backslashes if need.
+      - name: Set path (Windows)
+        if: ${{ runner.os == 'Windows' }}
+        shell: pwsh
+        run: |
+          $github_workspace = "${{ github.workspace }}"
+          $workspace = ($github_workspace -replace '\\','/')
+          Add-Content -Path $env:GITHUB_ENV -Value "workspace=$workspace"
+
+      - name: Set path (macOS/Linux)
+        if: ${{ runner.os != 'Windows' }}
+        run: |
+          export workspace=${{ github.workspace }}
+          echo "workspace=$workspace" >> $GITHUB_ENV
+
+      - name: Configure project
+        run: |
+          cmake -S . -B ${{ env.workspace }}/build \
+            -DCMAKE_BUILD_TYPE=${{ matrix.config }}
+
+      - name: Build project
+        working-directory: ${{ env.workspace }}/build
+        run: |
+          cmake --build . --config ${{ matrix.config }}
