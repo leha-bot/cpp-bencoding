@@ -7,7 +7,7 @@ and pretty-printing of bencoded data. It is also extensible so you can write
 your own manipulation of the decoded data.
 
 ``` cpp
-#include "bencoding/bencoding.h"
+#include <bencoding/bencoding.h>
 
 // Decode data stored in a std::string.
 auto decodedData = bencoding::decode(str);
@@ -91,15 +91,15 @@ Usage
    files in the following way:
 
     ``` cpp
-    #include "bencoding/bencoding.h"
+    #include <bencoding/bencoding.h>
     ```
 
    The header file `bencoding.h` includes all the library header files. You may
    include just some of them if you want:
 
     ``` cpp
-    #include "bencoding/Decoder.h"
-    #include "bencoding/PrettyPrinter.h"
+    #include <bencoding/Decoder.h>
+    #include <bencoding/PrettyPrinter.h>
     ```
 
 2. Use the functionality provided by the library. A simple example:
@@ -108,7 +108,7 @@ Usage
     #include <iostream>
     #include <memory>
 
-    #include "bencoding/bencoding.h"
+    #include <bencoding/bencoding.h>
 
     using namespace bencoding;
 
